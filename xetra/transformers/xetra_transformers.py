@@ -1,4 +1,5 @@
 from typing import NamedTuple
+import logging
 
 from xetra.common.s3 import S3BucketConnector
 
@@ -61,17 +62,26 @@ class XetraETL():
     """
 
     def __init__(self, s3_bucket_src: S3BucketConnector,
-    s3_bucket_trg: S3BucketConnector, meta_key: str,
-    src_args: XetraSourceConfig, trg_args: XetraTargetConfig):
+                 s3_bucket_trg: S3BucketConnector, meta_key: str,
+                 src_args: XetraSourceConfig, trg_args: XetraTargetConfig):
 
-    self.s3_bucket_src = s3_bucket_src
-    self.s3_nucket_trg = s3_bucket_trg
-    self.meta_key = meta_key
-    self.src_args = src_args
-    self.trg_args = trg_args
-    self.extract_date = 
-    self.extract_date_list = 
-    self.meta_update_list = 
+        """
+        :param s3_bucket_src: connection to source S3 bucket
+        :param s3_bucket_trg: connection to target S3 bucket
+        :param meta_key: used as self.meta_key -> key of meta files
+        :param src_args: NamedTouple class with source configuration data
+        :param trg_args: NamdeTouple class with target configuration data
+        """
+
+        self._logger = logging.getLogger(__name__)
+        self.s3_bucket_src = s3_bucket_src
+        self.s3_nucket_trg = s3_bucket_trg
+        self.meta_key = meta_key
+        self.src_args = src_args
+        self.trg_args = trg_args
+        self.extract_date = 
+        self.extract_date_list = 
+        self.meta_update_list = 
 
     def extract(self):
         pass
